@@ -4,6 +4,7 @@ const Intern = require('./lib/intern');
 const inquirer = require('inquirer');
 const path = require('path');
 const fs = require('fs');
+const htmlGeneration = require(`./src/work-template.js`);
 
 const DIST_DIR = path.resolve(__dirname, 'dist');
 const distPath = path.join(DIST_DIR, 'team.html');
@@ -12,6 +13,8 @@ const render = require('./src/work-template.js');
 
 const teamMembers = [];
 
+// start inquierer prompt, starts with asking for managers name, then engineer name, then intern name.  Then generate the HTML page with that info.  
+// push each new object into an array, then add array to HTML.
 
 // function for creating manager - inquirer questions
   // take those questions and create a new Manager with the user provided answers
