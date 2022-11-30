@@ -13,7 +13,96 @@ const render = require('./src/work-template.js');
 
 const teamMembers = [];
 
-// start inquierer prompt, starts with asking for managers name, then engineer name, then intern name.  Then generate the HTML page with that info.  
+inquirer
+  .prompt([ {
+    type:"input",
+    name:"managersName",
+    message:"What is your teams managers name?"
+   },
+   {
+    type:"input",
+    name:"managersId",
+    message:"What is your teams managers ID?"
+   },
+   {
+    type:"input",
+    name:"managersNumber",
+    message:"What is your teams managers office number?"
+   },
+   {
+    type:"input",
+    name:"managersEmail",
+    message:"What is your teams managers Email?"
+   }
+
+  ])
+  .then((answer) => {
+    console.table(answer)
+    // build a new manager with the class
+    const manager = new Manager(
+      answer.managersName,
+      answer.managersId,
+      answer.managersNumber,
+      answer.managersEmail,
+    )
+    // add new manager to team
+    teamMembers.push(manager)
+    // calls function to build engineer
+    buildengineer()
+  })
+  .catch((error) => {
+    console.log(error)
+  });
+
+function buildengineer(){
+  inquirer
+  .prompt([ {
+    type:"input",
+    name:"managersName",
+    message:"What is your teams managers name?"
+   },
+   {
+    type:"input",
+    name:"managersId",
+    message:"What is your teams managers ID?"
+   },
+   {
+    type:"input",
+    name:"managersNumber",
+    message:"What is your teams managers office number?"
+   },
+   {
+    type:"input",
+    name:"managersEmail",
+    message:"What is your teams managers Email?"
+   }
+
+  ])
+  .then((answer) => {
+    console.table(answer)
+    // build a new manager with the class
+    const manager = new Manager(
+      answer.managersName,
+      answer.managersId,
+      answer.managersNumber,
+      answer.managersEmail,
+    )
+    // add new manager to team
+    teamMembers.push(manager)
+    // calls function to build engineer
+    buildengineer()
+  })
+  .catch((error) => {
+    console.log(error)
+  });
+
+}
+
+// after this create prompt for intern, then write data to HTML
+
+
+
+  // start inquierer prompt, starts with asking for managers name, then engineer name, then intern name.  Then generate the HTML page with that info.  
 // push each new object into an array, then add array to HTML.
 
 // function for creating manager - inquirer questions
