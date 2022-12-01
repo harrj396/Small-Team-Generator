@@ -4,7 +4,6 @@ const Intern = require('./lib/intern');
 const inquirer = require('inquirer');
 const path = require('path');
 const fs = require('fs');
-const htmlGeneration = require(`./src/work-template.js`);
 
 const DIST_DIR = path.resolve(__dirname, 'dist');
 const distPath = path.join(DIST_DIR, 'team.html');
@@ -142,8 +141,9 @@ function buildintern(){
 }
 
 function close(){
-fs.writeFileSync(distPath, render(teamMembers))
-close()
+  fs.mkdirSync(DIST_DIR);
+  fs.writeFile(distPath, render(teamMembers), (err) =>
+    err ? console.error(err) : console.log("created HTML page!"))
 }
 // then write data to HTML
 
