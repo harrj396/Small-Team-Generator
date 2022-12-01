@@ -132,13 +132,20 @@ function buildintern(){
     )
     // add new intern to team
     teamMembers.push(intern)
-    // calls function to build intern
+    // ends adding members
+    close()
   })
+
   .catch((error) => {
     console.log(error)
   });
 }
-// after this create prompt for intern, then write data to HTML
+
+function close(){
+fs.writeFileSync(distPath, render(teamMembers))
+close()
+}
+// then write data to HTML
 
 
 
