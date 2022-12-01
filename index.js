@@ -87,7 +87,7 @@ function buildengineer(){
       answer.engineerGithub,
       answer.engineerEmail,
     )
-    // add new manager to team
+    // add new engineer to team
     teamMembers.push(engineer)
     // calls function to build intern
     buildintern()
@@ -95,11 +95,49 @@ function buildengineer(){
   .catch((error) => {
     console.log(error)
   });
-
-
-  
 }
 
+function buildintern(){
+  inquirer
+  .prompt([ {
+    type:"input",
+    name:"internName",
+    message:"What is your teams intern's name?"
+   },
+   {
+    type:"input",
+    name:"internId",
+    message:"What is your teams intern's ID?"
+   },
+   {
+    type:"input",
+    name:"internSchool",
+    message:"What school is this intern from?"
+   },
+   {
+    type:"input",
+    name:"internEmail",
+    message:"What is your teams intern's Email?"
+   }
+
+  ])
+  .then((answer) => {
+    console.table(answer)
+    // build a new manager with the class
+    const intern = new Intern(
+      answer.internName,
+      answer.internId,
+      answer.internSchool,
+      answer.internEmail,
+    )
+    // add new intern to team
+    teamMembers.push(intern)
+    // calls function to build intern
+  })
+  .catch((error) => {
+    console.log(error)
+  });
+}
 // after this create prompt for intern, then write data to HTML
 
 
